@@ -13,14 +13,14 @@
     @endif
     <h1>Halaman Penjualan</h1>
 
-    <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
+    <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
     <form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
         <div class="input-group">
             <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-                placeholder="Search penjualan">
+                placeholder="Cari penjualan">
             <button class="btn btn-outline-secondary" type="submit">
-                Search
+                Cari
             </button>
         </div>
     </form>
@@ -42,33 +42,35 @@
             @forelse($sales as $sale)
                 <tr>
                     <th scope="row">{{ $sales->firstItem() + $loop->index }}</th>
-                    <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i;:') }}</td>
+                    <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i') }}</td>
                     <td>{{ $sale->user->name }}</td>
                     <td>Rp.{{ $sale->total_pembayaran }}</td>
                     <td>{{ $sale->metode_pembayaran }}</td>
                     <td>{{ $sale->status }}</td>
 
                     <td class="d-flex gap-1">
-                        <a href="" class="btn btn-primary">Detail</a>
-                        @can('view', $sale)
-                            <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
-                        @endcan
-                         @can('delete', $sale)
-                        <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
+                        <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-info">Detail</a>
 
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-                                Hapus
-                            </button>
-                        </form>
-                        @endcan
+                        @if (auth()->user()->role->name === 'admin' && $sale->status !== 'COMPLETED')
+                            <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
+                        @endif
+
+                        @if (auth()->user()->role->name === 'admin')
+                            <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="btn btn-danger"
+                                    onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                    Hapus
+                                </button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Data Tidak Ditemukan</td>
+                    <td colspan="7">Data Tidak Ditemukan</td>
                 </tr>
             @endforelse
         </tbody>

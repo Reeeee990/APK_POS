@@ -45,7 +45,7 @@ class ProdukPolicy
      */
     public function delete(User $user, Produk $produk): bool
     {
-        return $user->role->name === 'admin';
+        return in_array($user->role->name, ['admin', 'kasir'], true);
     }
     /**
      * Determine whether the user can restore the model.

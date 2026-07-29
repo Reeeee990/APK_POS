@@ -44,16 +44,11 @@
                 <td>{{ $product->harga_jual }}</td>
                 <td>{{ $product->stok }}</td>
                 <td class="d-flex gap-1">
-                    @can('update', $product)
-                        <a href="{{ route('produk.edit', $product) }}" class="btn btn-warning">Edit</a>
-                    @endcan
-
                     @can('delete', $product)
-                        ||
                         <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus user?')">
+                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus produk?')">
                                 Hapus
                             </button>
                         </form>

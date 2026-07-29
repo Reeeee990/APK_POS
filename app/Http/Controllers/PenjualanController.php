@@ -82,9 +82,11 @@ class PenjualanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Penjualan $penjualan)
     {
-        //
+        $penjualan->load('user', 'itemPenjualan.produk');
+
+        return view('penjualan.show', compact('penjualan'));
     }
 
     /**
@@ -93,8 +95,6 @@ class PenjualanController extends Controller
     public function edit(Penjualan $penjualan)
     {
         $sale = $penjualan;
-
-        abort_if($sale->status === 'COMPLETED', 403);
 
         $sale->load('itemPenjualan');
 
@@ -144,12 +144,6 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
-        $this->authorize('delete', $penjualan);
-        // Pastikan hanya transaksi OPEN
-        if ($penjualan->status !== 'OPEN') {
-            return redirect()->route('penjualan.index')->with('errors', 'Transaksi sudah selesai tidak bisa dibatalkan');
-        }
-
         DB::transaction(function () use ($penjualan) {
 
             foreach ($penjualan->itemPenjualan as $item) {
