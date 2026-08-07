@@ -44,27 +44,39 @@
                     <th scope="row">{{ $sales->firstItem() + $loop->index }}</th>
                     <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i') }}</td>
                     <td>{{ $sale->user->name }}</td>
-                    <td>Rp.{{ $sale->total_pembayaran }}</td>
+                    <td>Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</td>
                     <td>{{ $sale->metode_pembayaran }}</td>
                     <td>{{ $sale->status }}</td>
 
                     <td class="d-flex gap-1">
-                        <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-info">Detail</a>
+                        @if ($sale->status === 'OPEN')
+                            <a href="{{ route('penjualan.lanjutan', $sale) }}" class="btn btn-success">Lanjutan</a>
 
-                        @if (auth()->user()->role->name === 'admin' && $sale->status !== 'COMPLETED')
-                            <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
-                        @endif
+                            @if (auth()->user()->role->name === 'admin')
+                                <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
 
-                        @if (auth()->user()->role->name === 'admin')
-                            <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                        Hapus
+                                    </button>
+                                </form>
+                            @endif
+                        @else
+                            <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-info">Detail</a>
 
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-                                    Hapus
-                                </button>
-                            </form>
+                            @if (auth()->user()->role->name === 'admin')
+                                <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                                        Hapus
+                                    </button>
+                                </form>
+                            @endif
                         @endif
                     </td>
                 </tr>

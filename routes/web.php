@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::middleware('role:admin,kasir')->group(function () {
         Route::resource('/produk', ProdukController::class);
+        Route::get('/penjualan/{penjualan}/lanjtan', [PenjualanController::class, 'edit'])->name('penjualan.lanjutan');
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);
     });

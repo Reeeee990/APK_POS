@@ -40,10 +40,13 @@
                 <td>{{ $product->user->name }}</td>
                 <td><img src="{{ asset('storage/' . $product->foto) }}" width="100" class="img-thumbnail"></td>
                 <td>{{ $product->nama }}</td>
-                <td>{{ $product->harga_beli }}</td>
-                <td>{{ $product->harga_jual }}</td>
+                <td>Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
                 <td>{{ $product->stok }}</td>
                 <td class="d-flex gap-1">
+                    @can('update', $product)
+                        <a href="{{ route('produk.edit', $product) }}" class="btn btn-warning">Edit</a>
+                    @endcan
                     @can('delete', $product)
                         <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
                             @csrf

@@ -14,7 +14,7 @@
         <div class="card-body">
             <p><strong>Kasir:</strong> {{ $penjualan->user->name }}</p>
             <p><strong>Tanggal Transaksi:</strong> {{ $penjualan->created_at->translatedFormat('d-m-Y H:i') }}</p>
-            <p><strong>Total Pembayaran:</strong> Rp {{ number_format($penjualan->total_pembayaran) }}</p>
+            <p><strong>Total Pembayaran:</strong> Rp {{ number_format($penjualan->total_pembayaran, 0, ',', '.') }}</p>
             <p><strong>Metode Pembayaran:</strong> {{ $penjualan->metode_pembayaran }}</p>
             <p><strong>Status:</strong> {{ $penjualan->status }}</p>
 
@@ -35,8 +35,8 @@
                         <tr>
                             <td>{{ $item->produk->nama }}</td>
                             <td>{{ $item->kuantitas }}</td>
-                            <td>Rp {{ number_format($item->harga_satuan) }}</td>
-                            <td>Rp {{ number_format($item->subtotal) }}</td>
+                            <td>Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -39,7 +39,7 @@
                                             class="rounded-circle" style="width:45px; height:45px; object-fit:cover">
                                         <div>
                                             <div class="fw-semibold">{{ $product->nama }}</div>
-                                            <small class="text-muted">{{ number_format($product->harga_jual) }}</small>
+                                            <small class="text-muted">Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</small>
                                         </div>
                                     </div>
                                 </button>
@@ -88,7 +88,7 @@
                                     </form>
                                 </td>
 
-                                <td>Rp {{ number_format($item->subtotal) }}</td>
+                                <td>Rp {{ number_format($item->subtotal, 0, ',', '.') }}</td>
                                 <td>
                                 @can('delete', $item)
                                     <form method="POST" action="{{ route('itempenjualan.destroy', $item->id) }}">
@@ -105,7 +105,7 @@
                 </table>
 
                 <div class="card-footer">
-                    <strong>Rp {{ number_format($sale->total_pembayaran) }}</strong>
+                    <strong>Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</strong>
 
                     <form method="POST" action="{{ route('penjualan.update', $sale->id) }}"
                         onsubmit="return confirm('Yakin ingin checkout ?')" class="mt-2">

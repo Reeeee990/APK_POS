@@ -31,7 +31,8 @@ class PenjualanController extends Controller
                 });
             })
 
-            ->latest()
+            ->orderByRaw("CASE WHEN status = 'OPEN' THEN 0 ELSE 1 END")
+            ->orderByDesc('created_at')
             ->paginate(10)
             ->withQueryString();
 
