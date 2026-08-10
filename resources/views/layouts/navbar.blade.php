@@ -18,12 +18,14 @@
           <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ route('produk.index') }}">Produk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ route('penjualan.index') }}">Penjualan</a>
+          <a class="nav-link {{ Request::is('penjualan') ? 'active' : '' }}" href="{{ route('penjualan.index') }}">Penjualan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('jenis') ? 'active' : '' }}" href="{{ route('jenis.index') }}">jenis</a>
         </li>
       </ul>
       <form class="position-absolute top-50 start-100 translate-middle" action="{{ route('logout') }}" method="POST">
         @csrf
-        
         <button class="btn btn-danger me-2" type="submit">Logout</button>
       </form>
     </div>

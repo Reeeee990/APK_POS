@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemPenjualanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JenisController;
 use GuzzleHttp\Promise\Create;
 
 Route::middleware('guest')->group(function () {
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::middleware('role:admin,kasir')->group(function () {
         Route::resource('/produk', ProdukController::class);
+        Route::resource('/jenis', JenisController::class);
         Route::get('/penjualan/{penjualan}/lanjtan', [PenjualanController::class, 'edit'])->name('penjualan.lanjutan');
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);

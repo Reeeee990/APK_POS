@@ -8,10 +8,10 @@
 <style>
     body{
         min-height:100vh;
-        background: linear-gradient(135deg,#0d6efd,#0dcaf0);
+        background: linear-gradient(135deg,#8488B5,#DEDEEA);
     }
 
-    .login-card{
+    .login-card{ 
         border:0;
         border-radius:1rem;
     }
