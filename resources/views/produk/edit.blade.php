@@ -8,6 +8,6 @@
 <form action="{{ route('produk.update', $produk) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    @include('Produk._form')
+    @include('produk._form')
 </form>
 @endsection

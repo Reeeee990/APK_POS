@@ -20,9 +20,9 @@ class AuthController extends Controller
             return redirect()->route('dashboard')->with('success', 'Selamat Datang, ' . Auth::user()->name);
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password tidak valid',
-        ]);
+        return redirect()->route('login')
+            ->withErrors(['email' => 'Email atau password tidak valid'])
+            ->withInput();
     }
 
     public function logout(Request $request)

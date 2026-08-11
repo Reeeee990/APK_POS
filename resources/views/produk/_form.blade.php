@@ -1,5 +1,9 @@
 
-@if (!empty($produk->foto))
+@php
+    $produk = $produk ?? null;
+@endphp
+
+@if (!empty($produk?->foto))
     <div class="mb-2">
         <label>Foto Saat Ini</label><br>
         <img src="{{ asset('storage/' . $produk->foto) }}" width="150" class="img-thumbnail">
@@ -32,8 +36,25 @@
 <div>
     <label>Nama Produk</label><br>
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-        value="{{ old('name', $produk->nama ?? '') }}">
+        value="{{ old('name', optional($produk)->nama ?? '') }}">
     @error('name')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+
+<div>
+    <label>Jenis Produk</label><br>
+    <select name="jenis_id" class="form-control @error('jenis_id') is-invalid @enderror">
+        <option value="">Pilih jenis produk</option>
+        @foreach($jenis as $item)
+            <option value="{{ $item->id }}" {{ old('jenis_id', optional($produk)->jenis_id ?? '') == $item->id ? 'selected' : '' }}>
+                {{ $item->nama_jenis }}
+            </option>
+        @endforeach
+    </select>
+    @error('jenis_id')
         <div class="invalid-feedback">
             {{ $message }}
         </div>

@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Type')
+@section('title', 'Edit Jenis')
 
 @section('content')
-<h4>Edit User</h4>
+<h4>Edit Jenis</h4>
 
 <form action="{{ route('jenis.update', $type) }}" method="post">
-@include('jenis._form') </form>
+    @method('PUT')
+    @include('jenis._form')
+</form>
 @endsection

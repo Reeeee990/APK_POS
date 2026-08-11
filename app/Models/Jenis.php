@@ -16,8 +16,9 @@ class Jenis extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
     public function produk()
     {
-        return $this->hasMany(produk::class,'jenis_id');
+        return $this->hasMany(Produk::class,'jenis_id');
     }
 }

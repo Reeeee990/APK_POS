@@ -7,7 +7,7 @@
     <!-- memanggil Link bootstraps--> 
      @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="app-shell">
 
 <div class="container">
 

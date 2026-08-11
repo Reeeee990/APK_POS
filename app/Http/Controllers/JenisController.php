@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\SearchRequest;
-use App\Models\jenis;
+use App\Models\Jenis;
 use Illuminate\Http\Request;
 
 class JenisController extends Controller
@@ -34,7 +34,7 @@ class JenisController extends Controller
      */
     public function create()
     {
-        //
+        return view('jenis.create');
     }
 
     /**
@@ -42,38 +42,58 @@ class JenisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_jenis' => 'required|string|max:255',
+        ]);
+
+        Jenis::create([
+            'user_id' => auth()->id(),
+            'nama_jenis' => $request->input('nama_jenis'),
+        ]);
+
+        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(jenis $jenis)
+    public function show(Jenis $jenis)
     {
-        //
+        return redirect()->route('jenis.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(jenis $jenis)
+    public function edit(Jenis $jenis)
     {
-        //
+        $type = $jenis;
+        return view('jenis.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, jenis $jenis)
+    public function update(Request $request, Jenis $jenis)
     {
-        //
+        $request->validate([
+            'nama_jenis' => 'required|string|max:255',
+        ]);
+
+        $jenis->update([
+            'nama_jenis' => $request->input('nama_jenis'),
+        ]);
+
+        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(jenis $jenis)
+    public function destroy(Jenis $jenis)
     {
-        //
+        $jenis->delete();
+
+        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil dihapus.');
     }
 }
