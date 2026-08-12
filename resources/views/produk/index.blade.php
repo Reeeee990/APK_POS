@@ -55,7 +55,7 @@
                                     <td>{{ $product->stok }}</td>
                                     <td class="d-flex gap-2 flex-wrap">
                                         @can('update', $product)
-                                            <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-outline-warning">Edit</a>
                                         @endcan
                                         @can('delete', $product)
                                             <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">

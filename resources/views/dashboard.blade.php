@@ -63,7 +63,7 @@
                 <div class="section-header mb-3">
                     <div>
                         <h5>Produk Rendah</h5>
-                        <small class="text-muted">Stok kritis</small>
+                        <small class="text-muted">Stok kurang dari 30</small>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -73,6 +73,7 @@
                                 <th>#</th>
                                 <th>Nama</th>
                                 <th>Stok</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,6 +82,13 @@
                                     <td>{{ $produkStokRendah->firstItem() + $index }}</td>
                                     <td>{{ $produk->nama }}</td>
                                     <td>{{ $produk->stok }}</td>
+                                    <td>
+                                        @if ($produk->stok <= 10)
+                                            <span class="badge bg-danger">Kritis</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">Rendah</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

@@ -40,11 +40,11 @@
                                     <th scope="row">{{ $types->firstItem() + $loop->index }}</th>
                                     <td>{{ $type->nama_jenis }}</td>
                                     <td class="d-flex gap-2 flex-wrap">
-                                        <a href="{{ route('jenis.edit', $type) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="{{ route('jenis.edit', $type) }}" class="btn btn-sm btn-secondary">Edit</a>
                                         <form action="{{ route('jenis.destroy', $type) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus jenis ini?')">Hapus</button>
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus jenis ini?')">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>

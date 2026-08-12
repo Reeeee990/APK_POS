@@ -6,7 +6,7 @@ use App\Models\Produk;
 
 class MonitoringStokService
 {
-    public function produkStokRendah(int $batas = 5, int $perPage = 5)
+    public function produkStokRendah(int $batas = 30, int $perPage = 5)
     {
         return Produk::where('stok', '>', 0)
             ->where('stok', '<=', $batas)
