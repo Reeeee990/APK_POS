@@ -25,4 +25,11 @@ class DashboardController extends Controller
             'produkStokHabis' => $this->stokService->produkStokHabis(),
         ]);
     }
+
+    public function profile()
+    {
+        return view('profile', [
+            'user' => auth()->user(),
+        ]);
+    }
 }

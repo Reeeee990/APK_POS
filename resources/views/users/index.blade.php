@@ -44,7 +44,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->name }}</td>
                                     <td class="d-flex gap-2 flex-wrap">
-                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-outline-warning">Edit Akun</a>
+                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-secondary">Edit Akun</a>
                                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')

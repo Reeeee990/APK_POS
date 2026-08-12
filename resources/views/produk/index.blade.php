@@ -6,6 +6,10 @@
 
     @include('layouts.navbar')
 
+    @php
+        $showProductActions = auth()->user()->role->name === 'admin';
+    @endphp
+
     <div class="page-section">
         <div class="page-panel card">
             <div class="section-header">
@@ -39,7 +43,9 @@
                                 <th scope="col">Harga Beli</th>
                                 <th scope="col">Harga Jual</th>
                                 <th scope="col">Stok</th>
-                                <th scope="col">Aksi</th>
+                                @if ($showProductActions)
+                                    <th scope="col">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -53,29 +59,36 @@
                                     <td>Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
                                     <td>Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
                                     <td>{{ $product->stok }}</td>
-                                    <td class="d-flex gap-2 flex-wrap">
-                                        @can('update', $product)
-                                            <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                                        @endcan
-                                        @can('delete', $product)
-                                            <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus produk?')">Hapus</button>
-                                            </form>
-                                        @endcan
-                                    </td>
+                                    @if ($showProductActions)
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center gap-2 h-100">
+                                                @can('update', $product)
+                                                    <a href="{{ route('produk.edit', $product) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                                @endcan
+
+                                                @can('delete', $product)
+                                                    <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Apakah anda yakin akan menghapus produk?')">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                @endcan
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center text-muted">Data tidak tersedia.</td>
+                                    <td colspan="{{ $showProductActions ? 9 : 8 }}" class="text-center text-muted">Data tidak tersedia.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
-
             <div class="mt-3">{{ $products->links() }}</div>
         </div>
     </div>

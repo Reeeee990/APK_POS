@@ -11,7 +11,10 @@
         </li>
         @if (auth()->user()->role->name === 'admin')
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }} bi bi-people" href="{{ route('admin.users') }}">  Users</a>
+          <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }} bi bi-people" href="{{ route('admin.users') }}"> Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('jenis') ? 'active' : '' }} bi bi-bag" href="{{ route('jenis.index') }}"> Jenis</a>
         </li>
         @endif
         <li class="nav-item">
@@ -20,11 +23,9 @@
         <li class="nav-item">
           <a class="nav-link {{ Request::is('penjualan') ? 'active' : '' }} bi bi-bag" href="{{ route('penjualan.index') }}"> Penjualan</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('jenis') ? 'active' : '' }} bi bi-bag" href="{{ route('jenis.index') }}"> Jenis</a>
-        </li>
       </ul>
       <div class="d-flex align-items-center gap-2">
+        <a class="btn btn-secondary bi bi-person-circle" href="{{ route('profile') }}"> Profile</a>
         <form action="{{ route('logout') }}" method="POST">
           @csrf
           <button class="btn btn-danger bi bi-box-arrow-right" type="submit">  Logout</button>

@@ -57,7 +57,7 @@
                                         @if ($sale->status === 'OPEN')
                                             <a href="{{ route('penjualan.lanjutan', $sale) }}" class="btn btn-sm btn-success">Lanjutan</a>
                                         @else
-                                            <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-sm btn-info">Detail</a>
+                                            <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-sm btn-secondary">Detail</a>
                                         @endif
                                         @if (auth()->user()->role->name === 'admin')
                                             <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">

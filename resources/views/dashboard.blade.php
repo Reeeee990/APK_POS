@@ -86,7 +86,7 @@
                                         @if ($produk->stok <= 10)
                                             <span class="badge bg-danger">Kritis</span>
                                         @else
-                                            <span class="badge bg-warning text-dark">Rendah</span>
+                                            <span class="badge bg-secondary text-dark">Rendah</span>
                                         @endif
                                     </td>
                                 </tr>
