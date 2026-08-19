@@ -62,8 +62,8 @@
             <div class="card page-panel table-card">
                 <div class="section-header mb-3">
                     <div>
-                        <h5>Produk Rendah</h5>
-                        <small class="text-muted">Stok kurang dari 30</small>
+                        <h5>Produk Kritis</h5>
+                        <small class="text-muted">Stok kurang atau sama dengan 30 (kritis)</small>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -105,8 +105,8 @@
             <div class="card page-panel table-card">
                 <div class="section-header mb-3">
                     <div>
-                        <h5>Produk Habis Stok</h5>
-                        <small class="text-muted">Butuh restock</small>
+                        <h5>Produk Habis</h5>
+                        <small class="text-muted">Produk yang stoknya habis</small>
                     </div>
                 </div>
                 <div class="table-responsive">

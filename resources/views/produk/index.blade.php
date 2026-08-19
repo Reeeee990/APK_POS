@@ -42,6 +42,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Harga Beli</th>
                                 <th scope="col">Harga Jual</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Stok</th>
                                 @if ($showProductActions)
                                     <th scope="col">Aksi</th>
@@ -58,6 +59,17 @@
                                     <td>{{ $product->nama }}</td>
                                     <td>Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
                                     <td>Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
+                                    <td>
+                                        @if ($product->stok <= 0)
+                                            <span class="badge bg-danger">Habis</span>
+                                        @elseif ($product->stok <= 10)
+                                            <span class="badge bg-danger">Kritis</span>
+                                        @elseif ($product->stok <= 30)
+                                            <span class="badge bg-warning text-dark">Rendah</span>
+                                        @else
+                                            <span class="badge bg-success">Aman</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $product->stok }}</td>
                                     @if ($showProductActions)
                                         <td class="text-center align-middle">
