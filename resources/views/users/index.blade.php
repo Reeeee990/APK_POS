@@ -10,17 +10,23 @@
         <div class="page-panel card">
             <div class="section-header">
                 <div>
-                    <h1>Users</h1>
-                    <p class="text-muted">Kelola akun pengguna dan hak akses.</p>
+                    <span class="badge-soft"><i class="bi bi-people-fill" aria-hidden="true"></i> Manajemen akses</span>
+                    <h1 class="mt-2 mb-1">Pengguna</h1>
+                    <p class="text-muted mb-0">{{ $users->total() }} akun terdaftar</p>
                 </div>
                 <div class="page-actions">
-                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Tambah User</a>
-                    <form action="{{ route('admin.users') }}" method="GET" class="w-100 w-md-auto">
-                        <div class="input-group">
-                            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Search username or email">
-                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <form action="{{ route('admin.users') }}" method="GET" class="user-search">
+                        <div class="input-group input-group-sm">
+                            <input type="search" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari pengguna..." aria-label="Cari pengguna">
+                            <button class="btn btn-outline-secondary" type="submit" aria-label="Cari" title="Cari">
+                                <i class="bi bi-search" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </form>
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+                        <i class="bi bi-person-plus-fill" aria-hidden="true"></i>
+                        Tambah
+                    </a>
                 </div>
             </div>
 
@@ -30,9 +36,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Peran</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -40,15 +46,23 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $users->firstItem() + $loop->index }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role->name }}</td>
-                                    <td class="d-flex gap-2 flex-wrap">
-                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-secondary">Edit Akun</a>
+                                    <td data-label="Nama">
+                                        <strong>{{ $user->name }}</strong>
+                                    </td>
+                                    <td data-label="Email">{{ $user->email }}</td>
+                                    <td data-label="Peran">
+                                        <span class="user-role">{{ $user->role->name }}</span>
+                                    </td>
+                                    <td data-label="Aksi" class="user-actions">
+                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-secondary" aria-label="Edit {{ $user->name }}" title="Edit akun">
+                                            <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                                        </a>
                                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus user ini?')">Hapus</button>
+                                            <button class="btn btn-sm btn-danger" aria-label="Hapus {{ $user->name }}" title="Hapus akun" onclick="return confirm('Yakin hapus user ini?')">
+                                                <i class="bi bi-trash3-fill" aria-hidden="true"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

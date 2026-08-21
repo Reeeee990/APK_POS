@@ -75,38 +75,6 @@
                         <span>Ada {{ $produkStokRendah->total() }} produk yang perlu segera diisi ulang.</span>
                     </div>
                 @endif
-                <div class="table-responsive">
-                    <table class="table mb-0">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Stok</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($produkStokRendah as $index => $produk)
-                                <tr>
-                                    <td>{{ $produkStokRendah->firstItem() + $index }}</td>
-                                    <td>{{ $produk->nama }}</td>
-                                    <td>{{ $produk->stok }}</td>
-                                    <td>
-                                        @if ($produk->stok <= 10)
-                                            <span class="badge stock-badge stock-critical">Kritis</span>
-                                        @else
-                                            <span class="badge stock-badge stock-low">Rendah</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="text-muted text-center">Semua produk dalam stok aman.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
                 <div class="mt-3">{{ $produkStokRendah->links() }}</div>
             </div>
         </div>
@@ -127,28 +95,6 @@
                         <span>{{ $produkStokHabis->total() }} produk sedang habis dan perlu segera dipasok.</span>
                     </div>
                 @endif
-                <div class="table-responsive">
-                    <table class="table mb-0">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($produkStokHabis as $produk)
-                                <tr>
-                                    <td>{{ $produkStokHabis->firstItem() + $loop->index }}</td>
-                                    <td>{{ $produk->nama }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="2" class="text-muted text-center">Tidak ada produk yang habis.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
                 <div class="mt-3">{{ $produkStokHabis->links() }}</div>
             </div>
         </div>
