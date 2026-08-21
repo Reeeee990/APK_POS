@@ -62,10 +62,19 @@
             <div class="card page-panel table-card">
                 <div class="section-header mb-3">
                     <div>
-                        <h5>Produk Kritis</h5>
-                        <small class="text-muted">Stok kurang atau sama dengan 30 (kritis)</small>
+                        <h5 class="mb-1">Produk Kritis</h5>
+                        <small class="text-muted">Produk yang hampir habis</small>
                     </div>
+                    <span class="stock-alert stock-alert-warning">
+                        <strong>{{ $produkStokRendah->total() }}</strong> produk
+                    </span>
                 </div>
+                @if ($produkStokRendah->total() > 0)
+                    <div class="stock-notice stock-notice-warning">
+                        <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+                        <span>Ada {{ $produkStokRendah->total() }} produk yang perlu segera diisi ulang.</span>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead>
@@ -92,7 +101,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-muted text-center">Semua produk dalam stok aman.</td>
+                                    <td colspan="4" class="text-muted text-center">Semua produk dalam stok aman.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -105,29 +114,36 @@
             <div class="card page-panel table-card">
                 <div class="section-header mb-3">
                     <div>
-                        <h5>Produk Habis</h5>
+                        <h5 class="mb-1">Produk Habis</h5>
                         <small class="text-muted">Produk yang stoknya habis</small>
                     </div>
+                    <span class="stock-alert stock-alert-danger">
+                        <strong>{{ $produkStokHabis->total() }}</strong> produk
+                    </span>
                 </div>
+                @if ($produkStokHabis->total() > 0)
+                    <div class="stock-notice stock-notice-danger">
+                        <i class="bi bi-x-circle-fill" aria-hidden="true"></i>
+                        <span>{{ $produkStokHabis->total() }} produk sedang habis dan perlu segera dipasok.</span>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Nama</th>
-                                <th>Stok</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($produkStokHabis as $produk)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $produkStokHabis->firstItem() + $loop->index }}</td>
                                     <td>{{ $produk->nama }}</td>
-                                    <td>{{ $produk->stok }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-muted text-center">Semua produk dalam stok aman.</td>
+                                    <td colspan="2" class="text-muted text-center">Tidak ada produk yang habis.</td>
                                 </tr>
                             @endforelse
                         </tbody>

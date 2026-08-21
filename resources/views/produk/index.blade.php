@@ -62,9 +62,9 @@
                                     <td>
                                         @if ($product->stok <= 0)
                                             <span class="badge stock-badge stock-empty">Habis</span>
-                                        @elseif ($product->stok <= 10)
+                                        @elseif ($product->stok <= 15)
                                             <span class="badge stock-badge stock-critical">Kritis</span>
-                                        @elseif ($product->stok <= 30)
+                                        @elseif ($product->stok <= 35)
                                             <span class="badge stock-badge stock-low">Rendah</span>
                                         @else
                                             <span class="badge stock-badge stock-safe">Aman</span>

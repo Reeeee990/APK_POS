@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="login-hero">
                         <h2 class="fw-bold">Lavender Mart</h2>
-                        <p>Masukkan email dan password untuk mengakses dashboard POS.</p>
+                        <p>Masukkan email dan password untuk mengakses dashboard Lavender Mart.</p>
                     </div>
 
                     <form action="{{ route('auth') }}" method="POST">
