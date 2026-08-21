@@ -17,7 +17,9 @@
             <div class="profile-card">
                 <div class="profile-identity">
                     <div class="profile-photo" aria-label="Tempat foto profil">
-                        <img src="{{ asset('flower-favicon.svg') }}" alt="Foto profil lavender">
+                        <img
+                            src="{{ asset('image.png') }}"
+                            alt="Foto profil">
                     </div>
                     <div>
                         <h2>Nama Lengkap Anda</h2>
