@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <!-- Isi title yang kita kirimkan dari views lain-->
     <title>@yield('title')</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('flower-favicon.svg') }}">
     <!-- memanggil Link bootstraps--> 
      @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

@@ -23,8 +23,8 @@
                     @endcan
                     <form action="{{ route('produk.index') }}" method="GET" class="w-100 w-md-auto">
                         <div class="input-group">
-                            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Search nama produk">
-                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama produk" aria-label="Cari nama produk">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
                         </div>
                     </form>
                 </div>
@@ -35,11 +35,11 @@
                     <table class="table mb-0">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">No</th>
                                 <th scope="col">User</th>
-                                <th scope="col">Jenis</th>
                                 <th scope="col">Foto</th>
-                                <th scope="col">Nama</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Jenis</th>
                                 <th scope="col">Harga Beli</th>
                                 <th scope="col">Harga Jual</th>
                                 <th scope="col">Status</th>
@@ -54,20 +54,20 @@
                                 <tr>
                                     <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
                                     <td>{{ $product->user->name }}</td>
-                                    <td>{{ optional($product->jenis)->nama_jenis ?? '-' }}</td>
-                                    <td><img src="{{ asset('storage/' . $product->foto) }}" width="100" class="img-thumbnail"></td>
+                                    <td><img src="{{ asset('storage/' . $product->foto) }}" class="product-thumbnail" alt="Foto {{ $product->nama }}"></td>
                                     <td>{{ $product->nama }}</td>
+                                    <td>{{ optional($product->jenis)->nama_jenis ?? '-' }}</td>
                                     <td>Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
                                     <td>Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
                                     <td>
                                         @if ($product->stok <= 0)
-                                            <span class="badge bg-danger">Habis</span>
+                                            <span class="badge stock-badge stock-empty">Habis</span>
                                         @elseif ($product->stok <= 10)
-                                            <span class="badge bg-danger">Kritis</span>
+                                            <span class="badge stock-badge stock-critical">Kritis</span>
                                         @elseif ($product->stok <= 30)
-                                            <span class="badge bg-warning text-dark">Rendah</span>
+                                            <span class="badge stock-badge stock-low">Rendah</span>
                                         @else
-                                            <span class="badge bg-success">Aman</span>
+                                            <span class="badge stock-badge stock-safe">Aman</span>
                                         @endif
                                     </td>
                                     <td>{{ $product->stok }}</td>
@@ -82,7 +82,7 @@
                                                     <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-sm btn-danger"
+                                                        <button class="btn btn-sm btn-danger" type="submit"
                                                             onclick="return confirm('Apakah anda yakin akan menghapus produk?')">
                                                             Hapus
                                                         </button>

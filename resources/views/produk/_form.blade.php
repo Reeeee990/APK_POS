@@ -10,7 +10,7 @@
     </div>
 @endif
 
-<div class="row">
+<div class="row g-3 form-section">
     <div class="col">
         <div>
             <label>Gambar</label>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div>
+<div class="form-section">
     <label>Nama Produk</label><br>
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
         value="{{ old('name', optional($produk)->nama ?? '') }}">
@@ -44,7 +44,7 @@
     @enderror
 </div>
 
-<div>
+<div class="form-section">
     <label>Jenis Produk</label><br>
     <select name="jenis_id" class="form-control @error('jenis_id') is-invalid @enderror">
         <option value="">Pilih jenis produk</option>
@@ -61,7 +61,7 @@
     @enderror
 </div>
 
-<div>
+<div class="form-section">
     <label>Harga Beli</label><br>
     <input type="number" name="purchase_price" class="form-control @error('purchase_price') is-invalid @enderror"
         value="{{ old('purchase_price', $produk->harga_beli ?? '') }}">
@@ -72,7 +72,7 @@
     @enderror
 </div>
 
-<div>
+<div class="form-section">
     <label>Harga Jual</label><br>
     <input type="number" name="selling_price" class="form-control @error('selling_price') is-invalid @enderror"
         value="{{ old('selling_price', $produk->harga_jual ?? '') }}">
@@ -84,7 +84,7 @@
 </div>
 
 
-<div>
+<div class="form-section">
     <label>Stok</label><br>
     <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror"
         value="{{ old('stock', $produk->stok ?? '') }}">

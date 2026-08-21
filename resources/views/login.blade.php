@@ -11,7 +11,7 @@
             <div class="card login-card shadow-lg">
                 <div class="card-body">
                     <div class="login-hero">
-                        <h2 class="fw-bold">Welcome Back</h2>
+                        <h2 class="fw-bold">Lavender Mart</h2>
                         <p>Masukkan email dan password untuk mengakses dashboard POS.</p>
                     </div>
 

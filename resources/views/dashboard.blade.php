@@ -84,9 +84,9 @@
                                     <td>{{ $produk->stok }}</td>
                                     <td>
                                         @if ($produk->stok <= 10)
-                                            <span class="badge bg-danger">Kritis</span>
+                                            <span class="badge stock-badge stock-critical">Kritis</span>
                                         @else
-                                            <span class="badge bg-secondary text-dark">Rendah</span>
+                                            <span class="badge stock-badge stock-low">Rendah</span>
                                         @endif
                                     </td>
                                 </tr>
