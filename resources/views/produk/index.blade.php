@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Produk')
+@section('title', 'Products')
 
 @section('content')
 
@@ -14,17 +14,17 @@
         <div class="page-panel card">
             <div class="section-header">
                 <div>
-                    <h1>Produk</h1>
-                    <p class="text-muted">Kelola daftar produk tersedia.</p>
+                    <h1>Products</h1>
+                    <p class="text-muted">Manage your available products.</p>
                 </div>
                 <div class="page-actions">
                     @can('create', App\Models\Produk::class)
-                        <a href="{{ route('produk.create') }}" class="btn btn-primary">Tambah Produk</a>
+                        <a href="{{ route('produk.create') }}" class="btn btn-primary">Add Product</a>
                     @endcan
                     <form action="{{ route('produk.index') }}" method="GET" class="w-100 w-md-auto">
                         <div class="input-group">
-                            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari nama produk" aria-label="Cari nama produk">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
+                            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Search product name" aria-label="Search product name">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Search</button>
                         </div>
                     </form>
                 </div>
@@ -38,14 +38,14 @@
                                 <th scope="col">No</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Foto</th>
-                                <th scope="col">Nama Produk</th>
-                                <th scope="col">Jenis</th>
-                                <th scope="col">Harga Beli</th>
-                                <th scope="col">Harga Jual</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Purchase Price</th>
+                                <th scope="col">Selling Price</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Stok</th>
+                                <th scope="col">Stock</th>
                                 @if ($showProductActions)
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col">Actions</th>
                                 @endif
                             </tr>
                         </thead>
@@ -54,20 +54,20 @@
                                 <tr>
                                     <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
                                     <td>{{ $product->user->name }}</td>
-                                    <td><img src="{{ asset('storage/' . $product->foto) }}" class="product-thumbnail" alt="Foto {{ $product->nama }}"></td>
+                                    <td><img src="{{ asset('storage/' . $product->foto) }}" class="product-thumbnail" alt="Photo of {{ $product->nama }}"></td>
                                     <td>{{ $product->nama }}</td>
                                     <td>{{ optional($product->jenis)->nama_jenis ?? '-' }}</td>
                                     <td>Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
                                     <td>Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
                                     <td>
                                         @if ($product->stok <= 0)
-                                            <span class="badge stock-badge stock-empty">Habis</span>
+                                            <span class="badge stock-badge stock-empty">Out of Stock</span>
                                         @elseif ($product->stok <= 15)
-                                            <span class="badge stock-badge stock-critical">Kritis</span>
+                                            <span class="badge stock-badge stock-critical">Critical</span>
                                         @elseif ($product->stok <= 35)
-                                            <span class="badge stock-badge stock-low">Rendah</span>
+                                            <span class="badge stock-badge stock-low">Low</span>
                                         @else
-                                            <span class="badge stock-badge stock-safe">Aman</span>
+                                            <span class="badge stock-badge stock-safe">Safe</span>
                                         @endif
                                     </td>
                                     <td>{{ $product->stok }}</td>
@@ -83,8 +83,8 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-sm btn-danger" type="submit"
-                                                            onclick="return confirm('Apakah anda yakin akan menghapus produk?')">
-                                                            Hapus
+                                                            onclick="return confirm('Are you sure you want to delete this product?')">
+                                                            Delete
                                                         </button>
                                                     </form>
                                                 @endcan
@@ -94,7 +94,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ $showProductActions ? 9 : 8 }}" class="text-center text-muted">Data tidak tersedia.</td>
+                                    <td colspan="{{ $showProductActions ? 9 : 8 }}" class="text-center text-muted">No data available.</td>
                                 </tr>
                             @endforelse
                         </tbody>

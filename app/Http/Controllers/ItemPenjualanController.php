@@ -46,7 +46,7 @@ class ItemPenjualanController extends Controller
             $product = Produk::lockForUpdate()->findOrFail($request->product_id);
 
             if ($product->stok < $request->quantity) {
-                return redirect()->route('penjualan.create')->with('errors', 'Produk stok tidak mencukupi');
+                return redirect()->route('penjualan.create')->with('errors', 'There is not enough product stock.');
             }
 
             $product->decrement('stok', $request->quantity);
@@ -108,7 +108,7 @@ class ItemPenjualanController extends Controller
 
             if ($selisih > 0) {
                 if ($produk->stok < $selisih) {
-                    return redirect()->route('penjualan.create')->with('errors', 'Stok tidak mencukupi');
+                    return redirect()->route('penjualan.create')->with('errors', 'There is not enough stock.');
                 }
 
                 $produk->decrement('stok', $selisih);

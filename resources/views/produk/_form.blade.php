@@ -5,7 +5,7 @@
 
 <div class="product-media-row">
     <div class="mb-3">
-        <label class="form-label" for="product-photo">Gambar produk</label>
+        <label class="form-label" for="product-photo">Product image</label>
         <input id="product-photo" type="file" name="foto" onchange="previewImage(this)"
             class="form-control @error('foto') is-invalid @enderror">
         @error('foto')
@@ -13,20 +13,20 @@
         @enderror
     </div>
     <div class="product-preview">
-        <span class="form-label">Preview foto</span>
+        <span class="form-label">Image preview</span>
         @if (!empty($produk?->foto))
-            <img id="preview" src="{{ asset('storage/' . $produk->foto) }}" alt="Foto {{ $produk->nama }}">
+            <img id="preview" src="{{ asset('storage/' . $produk->foto) }}" alt="Photo of {{ $produk->nama }}">
         @else
-            <img id="preview" alt="Preview foto" style="display:none">
-            <span class="product-preview-empty">Belum ada foto</span>
+            <img id="preview" alt="Image preview" style="display:none">
+            <span class="product-preview-empty">No image yet</span>
         @endif
     </div>
 </div>
 
 <div class="user-form-grid product-fields">
 <div class="mb-3">
-    <label class="form-label" for="product-name">Nama produk</label>
-    <input id="product-name" type="text" name="name" placeholder="Contoh: Kopi susu"
+    <label class="form-label" for="product-name">Product name</label>
+    <input id="product-name" type="text" name="name" placeholder="Example: Coffee latte"
         class="form-control @error('name') is-invalid @enderror"
         value="{{ old('name', optional($produk)->nama ?? '') }}">
     @error('name')
@@ -37,9 +37,9 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label" for="product-type">Jenis produk</label>
+    <label class="form-label" for="product-type">Product type</label>
     <select id="product-type" name="jenis_id" class="form-select @error('jenis_id') is-invalid @enderror">
-        <option value="">Pilih jenis produk</option>
+        <option value="">Select product type</option>
         @foreach($jenis as $item)
             <option value="{{ $item->id }}" {{ old('jenis_id', optional($produk)->jenis_id ?? '') == $item->id ? 'selected' : '' }}>
                 {{ $item->nama_jenis }}
@@ -54,7 +54,7 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label" for="purchase-price">Harga beli</label>
+    <label class="form-label" for="purchase-price">Purchase price</label>
     <input id="purchase-price" type="number" name="purchase_price" placeholder="0" min="0"
         class="form-control @error('purchase_price') is-invalid @enderror"
         value="{{ old('purchase_price', $produk->harga_beli ?? '') }}">
@@ -66,7 +66,7 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label" for="selling-price">Harga jual</label>
+    <label class="form-label" for="selling-price">Selling price</label>
     <input id="selling-price" type="number" name="selling_price" placeholder="0" min="0"
         class="form-control @error('selling_price') is-invalid @enderror"
         value="{{ old('selling_price', $produk->harga_jual ?? '') }}">
@@ -79,7 +79,7 @@
 
 
 <div class="mb-3">
-    <label class="form-label" for="product-stock">Stok</label>
+    <label class="form-label" for="product-stock">Stock</label>
     <input id="product-stock" type="number" name="stock" placeholder="0" min="0"
         class="form-control @error('stock') is-invalid @enderror"
         value="{{ old('stock', $produk->stok ?? '') }}">
@@ -93,8 +93,8 @@
 </div>
 
 <div class="user-form-actions">
-    <a href="{{ route('produk.index') }}" class="btn btn-light"><i class="bi bi-arrow-left" aria-hidden="true"></i> Batal</a>
-    <button class="btn btn-primary" type="submit"><i class="bi bi-check2" aria-hidden="true"></i> Simpan produk</button>
+    <a href="{{ route('produk.index') }}" class="btn btn-light"><i class="bi bi-arrow-left" aria-hidden="true"></i> Cancel</a>
+    <button class="btn btn-primary" type="submit"><i class="bi bi-check2" aria-hidden="true"></i> Save product</button>
 </div>
 <script>
     function previewImage(input) {

@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="login-hero">
                         <h2 class="fw-bold">Lavender Mart</h2>
-                        <p>Masukkan email dan password untuk mengakses dashboard Lavender Mart.</p>
+                        <p>Enter your email and password to access the Lavender Mart dashboard.</p>
                     </div>
 
                     <form action="{{ route('auth') }}" method="POST">
@@ -25,7 +25,7 @@
                                 name="email"
                                 value="{{ old('email') }}"
                                 class="form-control @error('email') is-invalid @enderror"
-                                placeholder="Masukkan email">
+                                placeholder="Enter your email">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -37,7 +37,7 @@
                                 type="password"
                                 name="password"
                                 class="form-control @error('password') is-invalid @enderror"
-                                placeholder="Masukkan password">
+                                placeholder="Enter your password">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

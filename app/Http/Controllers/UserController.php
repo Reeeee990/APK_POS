@@ -56,7 +56,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route('admin.users')->with('success', 'User berhasil dibuat');
+        return redirect()->route('admin.users')->with('success', 'User created successfully.');
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return back()->with('success', 'User delate');
+        return back()->with('success', 'User deleted successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users', $user->id)->with('success', 'User update');
+        return redirect()->route('admin.users', $user->id)->with('success', 'User updated successfully.');
     }
 
     /**

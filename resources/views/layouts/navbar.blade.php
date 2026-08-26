@@ -14,14 +14,14 @@
           <a class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}" href="{{ route('admin.users') }}"><i class="bi bi-people"></i> Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('jenis') ? 'active' : '' }}" href="{{ route('jenis.index') }}"><i class="bi bi-tag"></i> Jenis</a>
+          <a class="nav-link {{ Request::is('jenis') ? 'active' : '' }}" href="{{ route('jenis.index') }}"><i class="bi bi-tag"></i> Types</a>
         </li>
         @endif
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ route('produk.index') }}"><i class="bi bi-box2-fill"></i> Produk</a>
+          <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ route('produk.index') }}"><i class="bi bi-box2-fill"></i> Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('penjualan') ? 'active' : '' }}" href="{{ route('penjualan.index') }}"><i class="bi bi-receipt"></i> Penjualan</a>
+          <a class="nav-link {{ Request::is('penjualan') ? 'active' : '' }}" href="{{ route('penjualan.index') }}"><i class="bi bi-receipt"></i> Sales</a>
         </li>
       </ul>
       <div class="d-flex align-items-center gap-2">

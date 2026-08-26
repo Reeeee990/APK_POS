@@ -116,7 +116,7 @@ class PenjualanController extends Controller
         ]);
 
         if ($penjualan->status !== 'OPEN') {
-            return back()->with('errors', 'Transaksi sudah diproses');
+            return back()->with('errors', 'This sale has already been processed.');
         }
 
         if ($penjualan->itemPenjualan()->count() === 0) {
@@ -137,7 +137,7 @@ class PenjualanController extends Controller
 
         return redirect()
             ->route('penjualan.index')
-            ->with('success', 'Transaksi berhasil diselesaikan');
+            ->with('success', 'Sale completed successfully.');
     }
 
     /**
@@ -159,6 +159,6 @@ class PenjualanController extends Controller
 
         return redirect()
             ->route('penjualan.index')
-            ->with('success', 'Transaksi berhasil dibatalkan');
+            ->with('success', 'Sale cancelled successfully.');
     }
 }

@@ -17,11 +17,11 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard')->with('success', 'Selamat Datang, ' . Auth::user()->name);
+            return redirect()->route('dashboard')->with('success', 'Welcome, ' . Auth::user()->name);
         }
 
         return redirect()->route('login')
-            ->withErrors(['email' => 'Email atau password tidak valid'])
+            ->withErrors(['email' => 'The email or password is invalid.'])
             ->withInput();
     }
 
@@ -33,6 +33,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Anda telah keluar aplikasi');
+        return redirect()->route('login')->with('success', 'You have been logged out.');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'POS')
+@section('title', 'Point of Sale')
 
 @section('content')
     @if (session('errors'))
@@ -13,9 +13,9 @@
         <div class="user-form-panel card pos-panel">
             <div class="user-form-heading">
                 <div>
-                    <span class="badge-soft"><i class="bi bi-receipt-cutoff" aria-hidden="true"></i> Kasir</span>
-                    <h1 class="mt-3 mb-1">{{ $mode == 'edit' ? 'Edit penjualan' : 'Tambah penjualan' }}</h1>
-                    <p class="text-muted mb-0">Pilih produk, atur jumlah, lalu selesaikan pembayaran.</p>
+                    <span class="badge-soft"><i class="bi bi-receipt-cutoff" aria-hidden="true"></i> Point of sale</span>
+                    <h1 class="mt-3 mb-1">{{ $mode == 'edit' ? 'Edit sale' : 'Add sale' }}</h1>
+                    <p class="text-muted mb-0">Select products, set quantities, and complete the payment.</p>
                 </div>
                 <div class="user-form-mark" aria-hidden="true"><i class="bi bi-cart-check-fill"></i></div>
             </div>
@@ -28,15 +28,15 @@
                 <div class="card-body pos-catalog">
                     <div class="pos-card-heading">
                         <div>
-                            <h2>Daftar produk</h2>
-                            <p>Pilih barang untuk dimasukkan ke keranjang.</p>
+                            <h2>Product list</h2>
+                            <p>Select items to add to the cart.</p>
                         </div>
                         <i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i>
                     </div>
                     <div class="mb-3">
                         <form method="GET" action="{{ route('penjualan.create') }}">
                             <input type="text" name="search" value="{{ request('search') }}" class="form-control"
-                                placeholder="Cari produk..." onkeyup="this.form.submit()">
+                                placeholder="Search products..." onkeyup="this.form.submit()">
                         </form>
                     </div>
 
@@ -50,7 +50,7 @@
                                 <button type="button"
                                     class="btn btn-outline-primary w-100 text-start p-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
                                     <div class="d-flex align-items-center gap-2">
-                                        <img src="{{ asset('storage/' . $product->foto) }}" alt="Gambar"
+                                        <img src="{{ asset('storage/' . $product->foto) }}" alt="Product image"
                                             class="rounded-circle" style="width:45px; height:45px; object-fit:cover">
                                         <div>
                                             <div class="fw-semibold">{{ $product->nama }}</div>
@@ -81,18 +81,18 @@
             <div class="card pos-card pos-cart-card">
                 <div class="pos-card-heading">
                     <div>
-                        <h2>Keranjang</h2>
-                        <p>Periksa pesanan sebelum checkout.</p>
+                        <h2>Cart</h2>
+                        <p>Review your order before checkout.</p>
                     </div>
                     <i class="bi bi-basket3-fill" aria-hidden="true"></i>
                 </div>
                 <table class="table table-bordered mb-0">
                     <thead>
                         <tr>
-                            <th>Produk</th>
+                            <th>Product</th>
                             <th>Qty</th>
                             <th>Subtotal</th>
-                            <th>Aksi</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-danger btn-sm">Hapus</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 @endcan
                                 </td>
@@ -127,33 +127,33 @@
                 </table>
 
                 <div class="card-footer pos-cart-footer">
-                    <div class="pos-total-label">Total pembayaran</div>
+                    <div class="pos-total-label">Total payment</div>
                     <strong class="pos-total">Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</strong>
 
                     <form method="POST" action="{{ route('penjualan.update', $sale->id) }}"
-                        onsubmit="return confirm('Yakin ingin checkout ?')" class="mt-2">
+                        onsubmit="return confirm('Are you sure you want to complete this sale?')" class="mt-2">
                         @csrf
                         @method('PUT')
 
                         <select name="payment_method" class="form-select mb-2">
-                            <option value="">Pilih Pembayaran</option>
+                            <option value="">Select payment method</option>
                             <option value="CASH">Cash</option>
                             <option value="QRIS">QRIS</option>
                         </select>
 
                         <button class="btn btn-success w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                            Checkout
+                            Complete sale
                         </button>
                     </form>
                     @can('delete', $sale)
                     <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST"
-                        onsubmit="return confirm('Yakin ingin membatalkan transaksi?')">
+                        onsubmit="return confirm('Are you sure you want to cancel this sale?')">
                         @csrf
                         @method('DELETE')
 
                         <button
                             class="btn btn-outline-danger w-100 mt-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                            Batalkan Transaksi
+                            Cancel sale
                         </button>
                     </form>
                     @endcan

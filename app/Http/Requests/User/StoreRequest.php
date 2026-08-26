@@ -33,13 +33,13 @@ class StoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama Wajib diisi.',
-            'name.max' => 'Maksimal panjang nama 100 karakter.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password minimal :min karakter.',
-            'role_id.required' => 'Roles Wajib diisi.',
+            'name.required' => 'Name is required.',
+            'name.max' => 'Name cannot exceed 100 characters.',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least :min characters.',
+            'role_id.required' => 'Please select a role.',
         ];
     }
 }

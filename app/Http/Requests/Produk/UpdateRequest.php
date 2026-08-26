@@ -34,19 +34,19 @@ class UpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'foto.image' => 'File yang diupload harus gambar.',
-            'foto.mimes' => 'Extensi gambar harus JPG, JPEG, PNG.',
-            'foto.max' => 'Maksimal ukuran gambar 2MB.',
-            'name.required' => 'Nama wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'purchase_price.required' => 'purchase price wajib diisi.',
-            'purchase_price.integer' => 'purchase price harus diisi bilangan bulat.',
-            'selling_price.required' => 'selling price wajib diisi.',
-            'selling_price.integer' => 'selling price harus diisi bilangan bulat.',
-            'stock.required' => 'Stock wajib diisi.',
-            'stock.integer' => 'Stock harus diisi angka.',
-            'jenis_id.required' => 'Jenis produk wajib dipilih.',
-            'jenis_id.exists' => 'Jenis produk yang dipilih tidak valid.',
+            'foto.image' => 'The uploaded file must be an image.',
+            'foto.mimes' => 'The image must be JPG, JPEG, or PNG.',
+            'foto.max' => 'The image must not exceed 2MB.',
+            'name.required' => 'Product name is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'purchase_price.required' => 'Purchase price is required.',
+            'purchase_price.integer' => 'Purchase price must be a whole number.',
+            'selling_price.required' => 'Selling price is required.',
+            'selling_price.integer' => 'Selling price must be a whole number.',
+            'stock.required' => 'Stock is required.',
+            'stock.integer' => 'Stock must be a number.',
+            'jenis_id.required' => 'Please select a product type.',
+            'jenis_id.exists' => 'The selected product type is invalid.',
         ];
     }
 }

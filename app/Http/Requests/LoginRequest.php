@@ -23,10 +23,10 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required'    => 'Email wajib diisi.',
-            'email.email'       => 'Format email tidak valid.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min'      => 'Password minimal :min karakter.',
+            'email.required'    => 'Email is required.',
+            'email.email'       => 'Please enter a valid email address.',
+            'password.required' => 'Password is required.',
+            'password.min'      => 'Password must be at least :min characters.',
         ];
     }
 }

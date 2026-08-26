@@ -51,7 +51,7 @@ class JenisController extends Controller
             'nama_jenis' => $request->input('nama_jenis'),
         ]);
 
-        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil ditambahkan.');
+        return redirect()->route('jenis.index')->with('success', 'Product type added successfully.');
     }
 
     /**
@@ -84,7 +84,7 @@ class JenisController extends Controller
             'nama_jenis' => $request->input('nama_jenis'),
         ]);
 
-        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil diperbarui.');
+        return redirect()->route('jenis.index')->with('success', 'Product type updated successfully.');
     }
 
     /**
@@ -94,6 +94,6 @@ class JenisController extends Controller
     {
         $jenis->delete();
 
-        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil dihapus.');
+        return redirect()->route('jenis.index')->with('success', 'Product type deleted successfully.');
     }
 }

@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Produk')
+@section('title', 'Edit Product')
 
 @section('content')
     <div class="page-section user-form-page product-form-page">
         <div class="user-form-panel card">
             <div class="user-form-heading">
                 <div>
-                    <span class="badge-soft"><i class="bi bi-pencil-square" aria-hidden="true"></i> Inventaris</span>
-                    <h1 class="mt-3 mb-1">Edit produk</h1>
-                    <p class="text-muted mb-0">Perbarui informasi dan stok produk.</p>
+                    <span class="badge-soft"><i class="bi bi-pencil-square" aria-hidden="true"></i> Inventory</span>
+                    <h1 class="mt-3 mb-1">Edit product</h1>
+                    <p class="text-muted mb-0">Update product information and stock.</p>
                 </div>
                 <div class="user-form-mark" aria-hidden="true"><i class="bi bi-box-seam-fill"></i></div>
             </div>
