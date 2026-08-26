@@ -9,15 +9,30 @@
         </div>
     @endif
 
-    <h4 class="mb-3">
-        {{ $mode == 'edit' ? 'Edit Penjualan' : 'Tambah Penjualan' }}
-    </h4>
-    <div class="row">
+    <div class="page-section pos-page">
+        <div class="user-form-panel card pos-panel">
+            <div class="user-form-heading">
+                <div>
+                    <span class="badge-soft"><i class="bi bi-receipt-cutoff" aria-hidden="true"></i> Kasir</span>
+                    <h1 class="mt-3 mb-1">{{ $mode == 'edit' ? 'Edit penjualan' : 'Tambah penjualan' }}</h1>
+                    <p class="text-muted mb-0">Pilih produk, atur jumlah, lalu selesaikan pembayaran.</p>
+                </div>
+                <div class="user-form-mark" aria-hidden="true"><i class="bi bi-cart-check-fill"></i></div>
+            </div>
+
+    <div class="row g-4">
 
         {{-- ================== PRODUK ================== --}}
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body" style="max-height:70vh; overflow:auto">
+            <div class="card pos-card">
+                <div class="card-body pos-catalog">
+                    <div class="pos-card-heading">
+                        <div>
+                            <h2>Daftar produk</h2>
+                            <p>Pilih barang untuk dimasukkan ke keranjang.</p>
+                        </div>
+                        <i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i>
+                    </div>
                     <div class="mb-3">
                         <form method="GET" action="{{ route('penjualan.create') }}">
                             <input type="text" name="search" value="{{ request('search') }}" class="form-control"
@@ -63,7 +78,14 @@
 
         {{-- ================== KERANJANG ================== --}}
         <div class="col-md-6">
-            <div class="card">
+            <div class="card pos-card pos-cart-card">
+                <div class="pos-card-heading">
+                    <div>
+                        <h2>Keranjang</h2>
+                        <p>Periksa pesanan sebelum checkout.</p>
+                    </div>
+                    <i class="bi bi-basket3-fill" aria-hidden="true"></i>
+                </div>
                 <table class="table table-bordered mb-0">
                     <thead>
                         <tr>
@@ -104,8 +126,9 @@
                     </tbody>
                 </table>
 
-                <div class="card-footer">
-                    <strong>Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</strong>
+                <div class="card-footer pos-cart-footer">
+                    <div class="pos-total-label">Total pembayaran</div>
+                    <strong class="pos-total">Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</strong>
 
                     <form method="POST" action="{{ route('penjualan.update', $sale->id) }}"
                         onsubmit="return confirm('Yakin ingin checkout ?')" class="mt-2">
@@ -138,6 +161,8 @@
             </div>
         </div>
 
+    </div>
+        </div>
     </div>
 
 @endsection

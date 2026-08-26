@@ -31,7 +31,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Jenis Makanan</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" class="actions-column jenis-actions-column">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,13 +39,15 @@
                                 <tr>
                                     <th scope="row">{{ $types->firstItem() + $loop->index }}</th>
                                     <td>{{ $type->nama_jenis }}</td>
-                                    <td class="d-flex gap-2 flex-wrap">
+                                    <td class="actions-cell">
+                                        <div class="jenis-actions">
                                         <a href="{{ route('jenis.edit', $type) }}" class="btn btn-sm btn-secondary">Edit</a>
                                         <form action="{{ route('jenis.destroy', $type) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus jenis ini?')">Hapus</button>
                                         </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

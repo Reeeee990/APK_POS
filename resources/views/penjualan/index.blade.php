@@ -41,19 +41,20 @@
                                 <th scope="col">Total Pembayaran</th>
                                 <th scope="col">Metode Pembayaran</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" class="actions-column sales-actions-column">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($sales as $sale)
                                 <tr>
                                     <th scope="row">{{ $sales->firstItem() + $loop->index }}</th>
-                                    <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i') }}</td>
-                                    <td>{{ $sale->user->name }}</td>
-                                    <td>Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</td>
-                                    <td>{{ $sale->metode_pembayaran }}</td>
-                                    <td>{{ $sale->status }}</td>
-                                    <td class="d-flex gap-2 flex-wrap">
+                                    <td data-label="Tanggal Transaksi">{{ $sale->created_at->translatedFormat('d-m-Y H:i') }}</td>
+                                    <td data-label="Kasir">{{ $sale->user->name }}</td>
+                                    <td data-label="Total Pembayaran">Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</td>
+                                    <td data-label="Metode Pembayaran">{{ $sale->metode_pembayaran }}</td>
+                                    <td data-label="Status">{{ $sale->status }}</td>
+                                    <td data-label="Aksi" class="actions-cell">
+                                        <div class="table-actions">
                                         @if ($sale->status === 'OPEN')
                                             <a href="{{ route('penjualan.lanjutan', $sale) }}" class="btn btn-sm btn-success">Lanjutan</a>
                                         @else
@@ -66,6 +67,7 @@
                                                 <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">Hapus</button>
                                             </form>
                                         @endif
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

@@ -39,7 +39,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Peran</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" class="actions-column">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,7 +53,8 @@
                                     <td data-label="Peran">
                                         <span class="user-role">{{ $user->role->name }}</span>
                                     </td>
-                                    <td data-label="Aksi" class="user-actions">
+                                    <td data-label="Aksi" class="actions-cell">
+                                        <div class="user-actions">
                                         <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-secondary" aria-label="Edit {{ $user->name }}" title="Edit akun">
                                             <i class="bi bi-pencil-square" aria-hidden="true"></i>
                                         </a>
@@ -64,6 +65,7 @@
                                                 <i class="bi bi-trash3-fill" aria-hidden="true"></i>
                                             </button>
                                         </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
