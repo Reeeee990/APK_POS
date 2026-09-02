@@ -31,6 +31,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Product Type</th>
+                                <th scope="col">Created By</th>
                                 <th scope="col" class="actions-column jenis-actions-column">Actions</th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                 <tr>
                                     <th scope="row">{{ $types->firstItem() + $loop->index }}</th>
                                     <td data-label="Product Type">{{ $type->nama_jenis }}</td>
+                                    <td data-label="Created By">{{ $type->user?->name ?? 'Unknown' }}</td>
                                     <td class="actions-cell">
                                         <div class="jenis-actions">
                                         <a href="{{ route('jenis.edit', $type) }}" class="btn btn-sm btn-secondary">Edit</a>
@@ -52,7 +54,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center text-muted">No data available.</td>
+                                    <td colspan="4" class="text-center text-muted">No data available.</td>
                                 </tr>
                             @endforelse
                         </tbody>
