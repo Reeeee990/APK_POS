@@ -29,7 +29,12 @@ class DashboardController extends Controller
     public function profile()
     {
         return view('profile', [
-            'user' => auth()->user(),
+            'profile' => [
+                'name' => 'Lavender Mart',
+                'instagram' => '@lavendermart',
+                'role' => 'Pemilik Aplikasi',
+                'joined' => '10 April 2026',
+            ],
         ]);
     }
 }
