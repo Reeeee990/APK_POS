@@ -164,23 +164,54 @@ body {
     white-space: nowrap;
 }
 
-.profile-panel {
-    max-width: 760px;
+.profile-page {
+    max-width: 1120px;
+    margin: 0 auto 1.5rem;
 }
 
-.profile-card {
-    padding: 1.5rem;
+.profile-heading {
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+
+.profile-heading h1 {
+    margin-bottom: 0.25rem;
+    color: var(--color-purple-strong);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.profile-heading p,
+.profile-subtitle,
+.profile-introduction,
+.profile-info-card p {
+    color: var(--muted-color);
+}
+
+.profile-heading p {
+    margin-bottom: 0;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: minmax(270px, 0.85fr) minmax(0, 1.35fr);
+    gap: 1.25rem;
+}
+
+.profile-identity-card,
+.profile-info-card {
     border: 1px solid var(--border-color);
     border-radius: 1.25rem;
-    background: rgba(241, 234, 255, 0.42);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
 }
 
-.profile-identity {
+.profile-identity-card {
     display: flex;
+    min-height: 100%;
     align-items: center;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
 }
 
 .profile-photo {
@@ -202,10 +233,14 @@ body {
     object-fit: cover;
 }
 
-.profile-identity h2 {
+.profile-identity-card h2 {
     margin: 0 0 0.35rem;
     color: var(--color-purple-strong);
     font-size: 1.5rem;
+}
+
+.profile-subtitle {
+    margin-bottom: 0.85rem;
 }
 
 .profile-role {
@@ -218,63 +253,84 @@ body {
     font-weight: 600;
 }
 
-.profile-details {
+.profile-divider {
+    width: 100%;
+    margin: 1rem 0 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.profile-introduction {
+    margin-bottom: 0;
+    line-height: 1.55;
+}
+
+.profile-info-stack {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.85rem;
-    padding: 1.5rem 0;
+    gap: 1.25rem;
 }
 
-.profile-detail {
-    min-width: 0;
-    padding: 0.9rem 1rem;
-    border-radius: 0.85rem;
-    background: rgba(255, 253, 255, 0.72);
+.profile-info-card {
+    padding: 1.5rem;
 }
 
-.profile-detail small {
-    display: block;
-    margin-bottom: 0.35rem;
+.profile-info-card h2 {
+    margin-bottom: 1rem;
+    color: var(--color-purple-strong);
+    font-size: 1.35rem;
+}
+
+.profile-data-list {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.profile-data-list div {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.profile-data-list dt {
     color: var(--muted-color);
+    font-size: 0.9rem;
 }
 
-.profile-detail strong {
-    display: block;
+.profile-data-list dd {
+    margin: 0;
     overflow-wrap: anywhere;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.technology-list {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    color: var(--muted-color);
+    list-style: none;
+}
+
+.technology-list strong {
     color: var(--text-color);
 }
 
-.profile-placeholder {
-    color: var(--muted-color) !important;
-    font-weight: 500;
+.profile-application-card {
+    grid-column: 1 / -1;
 }
 
-.profile-note {
-    padding: 1rem 1.1rem;
-    border-radius: 0.85rem;
-    background: rgba(221, 205, 244, 0.38);
-}
-
-.profile-note h5 {
-    margin-bottom: 0.35rem;
-    color: var(--color-purple-strong);
-}
-
-.profile-note p {
-    color: var(--muted-color);
+.profile-application-card p {
+    margin-bottom: 0.55rem;
+    line-height: 1.55;
 }
 
 @media (max-width: 575px) {
-    .profile-card {
+    .profile-info-card,
+    .profile-identity-card {
         padding: 1rem;
     }
 
-    .profile-identity {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .profile-details {
+    .profile-layout {
         grid-template-columns: 1fr;
     }
 }
