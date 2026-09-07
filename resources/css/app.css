@@ -13,6 +13,7 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+    /* ==================== TEMA GLOBAL & TATA LETAK DASAR ==================== */
 :root {
     --color-purple: #c3a9e8;
     --color-purple-soft: #f1eaff;
@@ -90,6 +91,7 @@ body {
     filter: invert(0.05) sepia(1) saturate(5) hue-rotate(230deg);
 }
 
+/* ==================== TABEL & AKSI BERSAMA ==================== */
 .product-thumbnail {
     display: block;
     width: 64px;
@@ -164,6 +166,7 @@ body {
     white-space: nowrap;
 }
 
+/* ==================== HALAMAN PROFIL ==================== */
 .profile-page {
     max-width: 1120px;
     margin: 0 auto 1.5rem;
@@ -324,6 +327,7 @@ body {
     line-height: 1.55;
 }
 
+/* ==================== HALAMAN DETAIL PENJUALAN / STRUK ==================== */
 .sale-detail-heading h1 {
     color: var(--color-purple-strong);
 }
@@ -486,6 +490,7 @@ body {
     font-size: 0.78rem;
 }
 
+/* ==================== TAMPILAN CETAK STRUK PENJUALAN ==================== */
 @media print {
     @page {
         size: auto;
@@ -667,6 +672,7 @@ body {
     }
 }
 
+/* ==================== TAMPILAN CETAK RESPONSIF ==================== */
 @media print and (orientation: landscape) {
     .container {
         width: 100%;
@@ -677,6 +683,7 @@ body {
     }
 }
 
+/* ==================== TAMPILAN RESPONSIF MOBILE ==================== */
 @media (max-width: 575px) {
     .profile-info-card,
     .profile-identity-card {
@@ -688,6 +695,7 @@ body {
     }
 }
 
+/* ==================== FORMULIR & KOMPONEN BERSAMA ==================== */
 .form-section > div,
 .form-section > .row {
     margin-bottom: 1rem;
@@ -760,6 +768,7 @@ body {
     background: var(--color-purple-soft);
 }
 
+/* ==================== KOMPONEN STATUS STOK ==================== */
 .stock-badge {
     border-radius: 0.55rem;
     font-weight: 600;
