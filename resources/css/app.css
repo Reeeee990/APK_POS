@@ -91,7 +91,7 @@ body {
     filter: invert(0.05) sepia(1) saturate(5) hue-rotate(230deg);
 }
 
-/* ==================== TABEL & AKSI BERSAMA ==================== */
+/* ==================== USERS, JENIS, PRODUK & PENJUALAN ==================== */
 .product-thumbnail {
     display: block;
     width: 64px;
@@ -695,7 +695,7 @@ body {
     }
 }
 
-/* ==================== FORMULIR & KOMPONEN BERSAMA ==================== */
+/* ==================== KOMPONEN BERSAMA SEMUA HALAMAN ==================== */
 .form-section > div,
 .form-section > .row {
     margin-bottom: 1rem;
@@ -891,6 +891,7 @@ body {
     font-weight: 700;
 }
 
+/* ==================== HALAMAN DASHBOARD ==================== */
 .dashboard-grid {
     gap: 1.5rem;
 }
@@ -1123,6 +1124,7 @@ body {
     margin-bottom: 0;
 }
 
+/* ==================== HALAMAN LOGIN ==================== */
 .login-page {
     min-height: calc(100vh - 3rem);
     display: flex;
@@ -1197,6 +1199,7 @@ body {
     min-width: 200px;
 }
 
+/* ==================== HALAMAN USERS, JENIS & PRODUK ==================== */
 .user-form-page {
     max-width: 820px;
     margin: 0 auto 1.75rem;
@@ -1263,6 +1266,7 @@ body {
     border-top: 1px solid rgba(125, 110, 245, 0.12);
 }
 
+/* ==================== HALAMAN PRODUK ==================== */
 .product-form-page {
     max-width: 900px;
 }
@@ -1312,6 +1316,7 @@ body {
     font-size: 0.85rem;
 }
 
+/* ==================== HALAMAN PENJUALAN / POS ==================== */
 .pos-page {
     max-width: 1180px;
     margin: 0 auto 1.75rem;
@@ -1382,6 +1387,7 @@ body {
     font-size: 1.45rem;
 }
 
+/* ==================== HALAMAN USERS ==================== */
 .user-search {
     width: min(100%, 220px);
 }
